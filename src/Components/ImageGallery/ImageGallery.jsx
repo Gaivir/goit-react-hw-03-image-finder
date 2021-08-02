@@ -4,14 +4,15 @@ import styles from './ImageGallery.module.css';
 
 
 
-const ImageGallery = ({ images }) => (
+const ImageGallery = ({ images, onClick}) => (
   <ul className={styles.ImageGallery}>
-    {images.map(({ id, name, webformatURL }) => (
+    {images.map(({ id, name, webformatURL,largeImageURL}) => (
       <ImageGalleryItem
         imgId={id}
         imgName={name}
-        imgWebformatURL={webformatURL}
-      // onClickModal = 
+        webFormatImg={webformatURL}
+         largeImage={largeImageURL}
+        openModal={onClick}
       />))}
    </ul>
 )

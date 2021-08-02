@@ -1,7 +1,8 @@
 import { Component } from "react";
 import imgsApi  from './services/imgs-api';
-import styles from './App.module.css';
 import Searchbar from './Components/Searchbar/Searchbar';
+import styles from './App.module.css';
+
 import ImageGallery from './Components/ImageGallery/ImageGallery'
 import Modal from './Components/Modal/Modal';
 import Button from './Components/Button/Button';
@@ -27,7 +28,15 @@ class App extends Component {
       this.scrollTo();
       
   }
-}
+  }
+
+  scrollTo = () => {
+   window.scrollTo({
+  top: document.documentElement.scrollHeight,
+  behavior: 'smooth',
+});
+   }
+  
   
   onChangeQuery = query => {
     this.setState({
@@ -47,11 +56,9 @@ class App extends Component {
    
   }
  
- scrollTo = () => {
-   window.scrollTo({
-  top: document.documentElement.scrollHeight,
-  behavior: 'smooth',
-});
+ getElem = (largeImageURL) => {
+    this.setState({largeImageURL})
+    this.imgModal();
   }
 
 
@@ -62,7 +69,7 @@ class App extends Component {
     }))
   };
   
- 
+   
   
   
   
@@ -80,8 +87,9 @@ class App extends Component {
           </Modal> }
         <ImageGallery
           images={images}
+          onClick={this.getElem}
         />
-        {images.length > 0 && !isLoading && <Button
+        {images.length > 0 && <Button
           onClick={this.fetchImgs} />}
 
         {isLoading && <Spinner />}
