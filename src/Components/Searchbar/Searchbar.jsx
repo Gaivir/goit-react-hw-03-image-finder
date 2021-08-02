@@ -3,23 +3,36 @@ import styles from './Searchbar.module.css';
 
 class Searchbar extends Component {
     state = {
-        text:"",
-
+        query:"",
     }
+
+
+
+
+// 1. Звязуємо наш текст в стейті з даними що ввів користувач
+    handleChange = event => {
+    this.setState({ query: event.currentTarget.value });
+  }
     
+// 2. Сабмітимо форму дані, що ввів користувача записуємо в пропс onSubmit і скидуємо пошук Reset
       handleSubmit = event => {
     event.preventDefault();
-         this.props.onSubmit(this.state);
-         this.formReset();
+         this.props.onSubmit(this.state.query);
+          this.formReset();
          
     }
     
+// 3. Скидає пошук від даних користувача
     formReset = () => {
         this.setState({
-            text: '',
+            query: '',
            
         })
     }
+
+
+
+
     render() {
     
         return (
@@ -34,7 +47,9 @@ class Searchbar extends Component {
       type="text"
       autoComplete="off"
       autoFocus
-      placeholder="Search images and photos"
+    placeholder="Search images and photos"
+    value={this.state.query}
+    onChange={this.handleChange}
     />
   </form>
 </header>
