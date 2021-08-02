@@ -5,6 +5,7 @@ import Searchbar from './Components/Searchbar/Searchbar';
 import ImageGallery from './Components/ImageGallery/ImageGallery'
 import Modal from './Components/Modal/Modal';
 import Button from './Components/Button/Button';
+import Spinner from './Components/Loader/Loader';
 
 
 class App extends Component {
@@ -29,7 +30,11 @@ class App extends Component {
 }
   
   onChangeQuery = query => {
-    this.setState({searchQuery: query, currentPage: 1, images:[]})
+    this.setState({
+      searchQuery: query,
+      currentPage: 1,
+      images: [],
+    })
   };
 
   fetchImgs = () => {
@@ -64,19 +69,22 @@ class App extends Component {
   
   render() {
     // const visibleContacts = this.getVisibleContacts();
-    const { images, showModal, largeImageURL } = this.state;
+    const { images, showModal, largeImageURL,isLoading } = this.state;
     
     return (
       <div className={styles.App}>
         <Searchbar onSubmit={this.onChangeQuery}/>
-        {showModal && <Modal
-          url={largeImageURL}
-          />}
+        {showModal &&
+          <Modal onClose={this.imgModal}>
+          <img src={largeImageURL} alt='foto' />
+          </Modal> }
         <ImageGallery
           images={images}
         />
-        {images.length > 0 && <Button
+        {images.length > 0 && !isLoading && <Button
           onClick={this.fetchImgs} />}
+
+        {isLoading && <Spinner />}
 
       </div>
     )
