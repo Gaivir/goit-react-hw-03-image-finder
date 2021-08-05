@@ -1,24 +1,3 @@
-// import PropTypes from 'prop-types';
-// // import styles from './Modal.module.css';
-
-
-// const Modal = ({url}) => (
-
-//     <div className="Overlay">
-//         <div className="Modal">
-//             <img src={url} alt=""/>
-//         </div>
-//     </div>
-// );
-
-// Modal.propTypes = {
-//    url: PropTypes.string.isRequired,
-//     largeNameImg: PropTypes.string.isRequired,
-// };
-
-// export default Modal;
-
-
 import { Component } from 'react';
 import styles from './Modal.module.css'
 import { createPortal } from 'react-dom'
@@ -62,7 +41,6 @@ const modalRoot = document.querySelector('#modal-root');
         return createPortal(
  <div className={styles.Overlay} onClick={this.handlOverlayClick}>
                 <div className={styles.Modal}>
-
     {children}
     
   </div>

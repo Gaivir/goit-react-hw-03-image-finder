@@ -3,7 +3,12 @@ import styles from './ImageGalleryItem.module.css';
 
 const ImageGalleryItem = ({ imgId, imgName, webFormatImg,largeImage,openModal}) => (
     
-  <li key={imgId} onClick={()=> {openModal(largeImage)}} className={styles.ImageGalleryItem}><img src={webFormatImg} alt={imgName} className={styles.ImageGalleryItemImage}/></li>
+  <li key={imgId}
+    onClick={() => { openModal(largeImage); }}
+    className={styles.ImageGalleryItem}>
+    <img src={webFormatImg}
+      alt={imgName}
+      className={styles.ImageGalleryItemImage} /></li>
 );
  
 

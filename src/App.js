@@ -52,7 +52,7 @@ class App extends Component {
     this.setState({ isLoading: true });
 
     imgsApi.fetchImgs(options)
-      .then(images => { this.setState(prevState => ({ images: [...prevState.images, ...images], currentPage: prevState.currentPage + 1, })) });
+      .then(images => { this.setState(prevState => ({ images: [...prevState.images, ...images], currentPage: prevState.currentPage + 1, })) }).finally(()=>this.setState({isLoading:false}));
    
   }
  
