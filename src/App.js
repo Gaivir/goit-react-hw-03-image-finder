@@ -25,9 +25,10 @@ class App extends Component {
   componentDidUpdate(prevProps, PrevState) {
     if (PrevState.searchQuery !== this.state.searchQuery) {
       this.fetchImgs();
-      this.scrollTo();
+     
       
-  }
+    }
+     this.scrollTo();
   }
 
   scrollTo = () => {
